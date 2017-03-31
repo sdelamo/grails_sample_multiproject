@@ -54,10 +54,18 @@ dependencies {
     testCompile "org.grails:grails-datastore-rest-client"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
-    compile project(':myplugin')
+    //compile project(':myplugin')
+    // doesn't do hot code reloading
 }
 
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
     addResources = true
+}
+
+// does do hot code reloading, but only with grails run-app
+grails {
+    plugins {
+        compile project(':myplugin')
+    }
 }
